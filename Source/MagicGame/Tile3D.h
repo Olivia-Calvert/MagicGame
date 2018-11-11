@@ -12,8 +12,10 @@ UCLASS()
 class MAGICGAME_API ATile3D : public AStaticMeshActor {
 	GENERATED_BODY()
 protected:
-	UPROPERTY(VisibleAnywhere)
-		UStaticMeshComponent* TileMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Core")
+		int id;
+	UPROPERTY(BlueprintReadOnly, Category = "Core")
+		FVector worldPos;
 public:
 	ATile3D();
 	~ATile3D();
