@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "Components/InputComponent.h"
 #include "PlayerBase.generated.h"
+
 
 UCLASS()
 class MAGICGAME_API APlayerBase : public APawn
@@ -23,7 +25,11 @@ public:
 	UPROPERTY(EditAnywhere)
 		FVector StartPosition;
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float moveSpeed = 20000;
+		float moveSpeed = 85.0f;
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float sprintMultiplier = 3.0f;
+	UPROPERTY(VisibleAnywhere, Category = "Movement")
+		bool Sprinting;
 
 protected:
 	// Called when the game starts or when spawned
@@ -38,5 +44,7 @@ public:
 
 	virtual void MoveForward(float value);
 	virtual void MoveRight(float value);
+	virtual void SprintStart();
+	virtual void SprintStop();
 	
 };
