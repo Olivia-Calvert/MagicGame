@@ -31,6 +31,22 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Movement")
 		bool Sprinting;
 
+	UPROPERTY(EditAnywhere, Category = "Stats")
+		float MaxHealth;
+	UPROPERTY(VisibleAnywhere, Category = "Stats")
+		float CurrentHealth;
+	UPROPERTY(EditAnywhere, Category = "Stats")
+		float MaxStamina;
+	UPROPERTY(VisibleAnywhere, Category = "Stats")
+		float CurrentStamina;
+	UPROPERTY(EditAnywhere, Category = "Stats")
+		float MaxMana;
+	UPROPERTY(VisibleAnywhere, Category = "Stats")
+		float CurrentMana;
+	UPROPERTY(EditAnywhere, Category = "Stats")
+		float MagicDamage;
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
