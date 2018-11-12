@@ -6,12 +6,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "MagicGameGameModeBase.generated.h"
 
-/**
- * 
- */
 UCLASS()
-class MAGICGAME_API AMagicGameGameModeBase : public AGameModeBase
-{
+class MAGICGAME_API AMagicGameGameModeBase : public AGameModeBase {
 	GENERATED_BODY()
 	
 	
