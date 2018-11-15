@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "NPCProperties.h"
+#include "Spell.h"
 #include "NPCBase.generated.h"
 
 UCLASS()
@@ -22,7 +23,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "NPC")
 		float CurrentHealth;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
-		ESpells[] SpellList;
+		TArray<FSpell> Spells;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Battle Stats")
 		float MaxHealth;	// Out of 250, avg. 100
