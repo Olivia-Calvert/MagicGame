@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "GameManager.h"
+#include "Misc/Paths.h"
 
 AGameManager::AGameManager() {
 	LoadSpells();
@@ -8,13 +9,17 @@ AGameManager::AGameManager() {
 }
 
 void AGameManager::LoadSpells() {
-	fstream inFile("SpellData.csv");
+	FString path = FPaths::GameDir() + "/Content/SpellData.csv";
+	fstream inFile(TCHAR_TO_UTF8(*path));
 
 	if (!inFile || !inFile.good())
 		return;
 
 	string line;
 	while (getline(inFile, line)) {
+		if (line[0] == '#')
+			continue;
+
 		string element;
 		vector<string> elements;
 		for (int i = 0; i < line.length(); i++) {
@@ -51,13 +56,17 @@ void AGameManager::LoadSpells() {
 }
 
 void AGameManager::LoadStatusEffects() {
-	fstream inFile("StatusData.csv");
+	FString path = FPaths::GameDir() + "/Content/EffectData.csv";
+	fstream inFile(TCHAR_TO_UTF8(*path));
 
 	if (!inFile || !inFile.good())
 		return;
 
 	string line;
 	while (getline(inFile, line)) {
+		if (line[0] == '#')
+			continue;
+
 		string element;
 		vector<string> elements;
 		for (int i = 0; i < line.length(); i++) {

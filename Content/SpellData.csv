@@ -1,0 +1,3 @@
+#Name,#TypeIndex,#Power/100,#Accuracy/100,#EffectIndex:Chance
+Magic Missile,4,65,65,
+Fireball,0,50,65,0:5
