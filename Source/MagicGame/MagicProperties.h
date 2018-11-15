@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "MagicProperties.generated.h"
 
 UENUM(BlueprintType)
 enum class EMagicTypes : uint8 {
@@ -10,4 +11,20 @@ enum class EMagicTypes : uint8 {
 	WATER		UMETA(DisplayName = "Water"),
 	EARTH		UMETA(DisplayName = "Earth"),
 	WIND		UMETA(DisplayName = "Wind"),
+	FORCE		UMETA(DisplayName = "Force"),
+};
+
+UENUM(BlueprintType)
+enum class EStatusEffects : uint8 {
+	BURNING		UMETA(DisplayName = "Burning"),
+};
+
+USTRUCT(BlueprintType)
+struct FStatusChance {
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		int id;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		float chance;
 };

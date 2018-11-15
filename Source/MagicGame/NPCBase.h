@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <string>
+
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "NPCProperties.h"
