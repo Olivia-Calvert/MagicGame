@@ -10,6 +10,7 @@ APlayerBase::APlayerBase()
 	PrimaryActorTick.bCanEverTick = true;
 
 	TemporaryMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Temp. Mesh"));
+
 	Sprinting = false;
 }
 
