@@ -2,15 +2,25 @@
 
 #pragma once
 
+#include <fstream>
+#include <vector>
+
 #include "CoreMinimal.h"
 #include "GameFramework/GameMode.h"
+#include "Spell.h"
 #include "GameManager.generated.h"
+
+using namespace std;
 
 UCLASS()
 class MAGICGAME_API AGameManager : public AGameMode {
 	GENERATED_BODY()
+private:
+	vector<FSpell> spellList;
 protected:
-	// Vars
+	
+private:
+	void LoadSpells();
 public:
 	// Functions
 };
