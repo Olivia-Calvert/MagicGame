@@ -15,7 +15,7 @@ UCLASS()
 class ANPCBase : public APawn {
 	GENERATED_BODY()
 protected:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 		UStaticMeshComponent* Mesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Base Properties")
