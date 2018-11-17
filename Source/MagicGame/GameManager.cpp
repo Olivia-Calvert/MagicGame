@@ -9,7 +9,7 @@ AGameManager::AGameManager() {
 }
 
 void AGameManager::LoadSpells() {
-	FString path = FPaths::GameDir() + "/Content/SpellData.csv";
+	FString path = FPaths::ProjectContentDir() + "/SpellData.csv";
 	fstream inFile(TCHAR_TO_UTF8(*path));
 
 	if (!inFile || !inFile.good())
@@ -56,7 +56,7 @@ void AGameManager::LoadSpells() {
 }
 
 void AGameManager::LoadStatusEffects() {
-	FString path = FPaths::GameDir() + "/Content/EffectData.csv";
+	FString path = FPaths::ProjectContentDir() + "/EffectData.csv";
 	fstream inFile(TCHAR_TO_UTF8(*path));
 
 	if (!inFile || !inFile.good())
@@ -82,8 +82,8 @@ void AGameManager::LoadStatusEffects() {
 		effect.id = statusList.size();
 		if (!elements[0].empty())
 			effect.Name = UTF8_TO_TCHAR(elements[0].c_str());
-		if (!elements[1].empty())
-			effect.Type = (EMagicTypes)stoi(elements[1]);
+		//if (!elements[1].empty())
+		//	effect.Type = (EMagicTypes)stoi(elements[1]);
 		statusList.push_back(effect);
 	}
 }
