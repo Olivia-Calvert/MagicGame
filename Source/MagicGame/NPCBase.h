@@ -4,6 +4,7 @@
 
 #include <string>
 
+#include "Components/StaticMeshComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "NPCProperties.h"
@@ -11,9 +12,12 @@
 #include "NPCBase.generated.h"
 
 UCLASS()
-class MAGICGAME_API ANPCBase : public APawn {
+class ANPCBase : public APawn {
 	GENERATED_BODY()
 protected:
+	UPROPERTY(EditAnywhere)
+		UStaticMeshComponent* Mesh;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Base Properties")
 		ENPCType NPCType;
 
