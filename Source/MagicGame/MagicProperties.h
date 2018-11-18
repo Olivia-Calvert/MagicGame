@@ -12,11 +12,14 @@ enum class EMagicTypes : uint8 {
 	EARTH		UMETA(DisplayName = "Earth"),
 	WIND		UMETA(DisplayName = "Wind"),
 	FORCE		UMETA(DisplayName = "Force"),
+	ICE			UMETA(DisplayName = "Ice"),
 };
 
 UENUM(BlueprintType)
 enum class EStatusEffects : uint8 {
 	BURNING		UMETA(DisplayName = "Burning"),
+	FROZEN		UMETA(DisplayName = "Frozen"),
+	CONFUSED	UMETA(DisplayName = "Confused"),
 };
 
 USTRUCT(BlueprintType)
