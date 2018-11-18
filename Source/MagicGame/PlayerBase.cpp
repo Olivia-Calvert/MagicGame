@@ -10,8 +10,11 @@ APlayerBase::APlayerBase()
 	PrimaryActorTick.bCanEverTick = true;
 
 	TemporaryMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Temp. Mesh"));
+	TemporaryMesh->SetSimulatePhysics(true);
+	RootComponent = TemporaryMesh;
 
 	Sprinting = false;
+	Jumping = false;
 }
 
 // Called when the game starts or when spawned
@@ -32,6 +35,7 @@ void APlayerBase::Tick(float DeltaTime)
 		{
 			CurrentVelocity = CurrentVelocity * sprintMultiplier;
 		}
+		
 		FVector NewLocation = GetActorLocation() + (CurrentVelocity * DeltaTime);
 		SetActorLocation(NewLocation);
 	}
@@ -47,6 +51,7 @@ void APlayerBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerBase::MoveRight);
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &APlayerBase::SprintStart);
 	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &APlayerBase::SprintStop);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &APlayerBase::Jump);
 }
 
 
@@ -68,4 +73,13 @@ void APlayerBase::SprintStart()
 void APlayerBase::SprintStop()
 {
 	Sprinting = false;
+}
+
+void APlayerBase::Jump()
+{
+	if (!Jumping)
+	{
+		CurrentVelocity.Z += 100.0f;
+		//Jumping = true;
+	}
 }

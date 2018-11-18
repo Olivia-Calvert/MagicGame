@@ -2,11 +2,20 @@
 
 #pragma once
 
+#include "Engine.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Components/InputComponent.h"
 #include "PlayerBase.generated.h"
 
+enum Direction
+{
+	DIRECTION_FORWARD,
+	DIRECTION_BACKWARD,
+	DIRECTION_LEFT,
+	DIRECTION_RIGHT,
+	DIRECTION_NONE,
+};
 
 UCLASS()
 class MAGICGAME_API APlayerBase : public APawn
@@ -30,6 +39,8 @@ public:
 		float sprintMultiplier = 3.0f;
 	UPROPERTY(VisibleAnywhere, Category = "Movement")
 		bool Sprinting;
+	UPROPERTY(VisibleAnywhere, Category = "Movement")
+		bool Jumping;
 
 	UPROPERTY(EditAnywhere, Category = "Stats")
 		float MaxHealth;
@@ -62,5 +73,6 @@ public:
 	virtual void MoveRight(float value);
 	virtual void SprintStart();
 	virtual void SprintStop();
+	virtual void Jump();
 	
 };
