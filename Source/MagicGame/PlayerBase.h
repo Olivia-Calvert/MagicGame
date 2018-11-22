@@ -8,8 +8,8 @@
 #include "Components/InputComponent.h"
 #include "PlayerBase.generated.h"
 
-enum Direction
-{
+UENUM(BlueprintType)
+enum class Direction : uint8 {
 	DIRECTION_FORWARD,
 	DIRECTION_BACKWARD,
 	DIRECTION_LEFT,
@@ -43,6 +43,8 @@ public:
 		bool Sprinting;
 	UPROPERTY(VisibleAnywhere, Category = "Movement")
 		bool Jumping;
+	UPROPERTY(VisibleAnywhere, Category = "Movement")
+		Direction PlayerDirection;
 
 	UPROPERTY(EditAnywhere, Category = "Stats")
 		float MaxHealth;
