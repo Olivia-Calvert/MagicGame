@@ -37,9 +37,11 @@ void APlayerBase::Tick(float DeltaTime)
 		}
 		
 		FVector NewLocation = GetActorLocation() + (CurrentVelocity * DeltaTime);
-		SetActorLocation(NewLocation);
+		SetActorLocation(NewLocation);	
 	}
 
+	FRotator newRotation = FRotator(GetActorRotation().Pitch, 0.0f, 0.0f);
+	SetActorRotation(newRotation);
 }
 
 // Called to bind functionality to input
@@ -51,7 +53,8 @@ void APlayerBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerBase::MoveRight);
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &APlayerBase::SprintStart);
 	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &APlayerBase::SprintStop);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &APlayerBase::Jump);
+	//PlayerInputComponent->BindAction("JumpStart", IE_Pressed, this, &APlayerBase::JumpStart);
+	//PlayerInputComponent->BindAction("JumpStop", IE_Released, this, &APlayerBase::JumpStop);
 }
 
 
@@ -75,11 +78,17 @@ void APlayerBase::SprintStop()
 	Sprinting = false;
 }
 
-void APlayerBase::Jump()
+void APlayerBase::JumpStart()
 {
 	if (!Jumping)
 	{
 		CurrentVelocity.Z += 100.0f;
-		//Jumping = true;
+		Jumping = true;
 	}
+}
+
+void APlayerBase::JumpStop()
+{
+	//CurrentVelocity.Z = 0.0f;
+	//Jumping = false;
 }
