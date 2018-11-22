@@ -27,7 +27,9 @@ public:
 	APlayerBase();
 
 	UPROPERTY(EditAnywhere)
-		UStaticMeshComponent* TemporaryMesh;
+		UStaticMeshComponent* WizardMesh;
+	//UPROPERTY(EditAnywhere)
+		//UBoxComponent* CollisionBox;
 
 	UPROPERTY(VisibleAnywhere)
 		FVector CurrentVelocity;

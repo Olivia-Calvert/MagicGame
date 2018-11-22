@@ -9,9 +9,11 @@ APlayerBase::APlayerBase()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	TemporaryMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Temp. Mesh"));
-	TemporaryMesh->SetSimulatePhysics(true);
-	RootComponent = TemporaryMesh;
+	//CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision Box)"));
+
+	WizardMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Player Mesh"));
+	WizardMesh->SetSimulatePhysics(true);
+	RootComponent = WizardMesh;
 
 	Sprinting = false;
 	Jumping = false;
@@ -29,6 +31,8 @@ void APlayerBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	FRotator newRotation;
+
 	if (!CurrentVelocity.IsZero())
 	{
 		if (Sprinting)
@@ -39,8 +43,11 @@ void APlayerBase::Tick(float DeltaTime)
 		FVector NewLocation = GetActorLocation() + (CurrentVelocity * DeltaTime);
 		SetActorLocation(NewLocation);	
 	}
-
-	FRotator newRotation = FRotator(GetActorRotation().Pitch, 0.0f, 0.0f);
+	else
+	{
+		newRotation.Pitch = 0.0f;
+	}
+	
 	SetActorRotation(newRotation);
 }
 
