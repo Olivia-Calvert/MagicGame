@@ -73,6 +73,7 @@ public:
 	virtual void MoveRight(float value);
 	virtual void SprintStart();
 	virtual void SprintStop();
-	virtual void Jump();
+	virtual void JumpStart();
+	virtual void JumpStop();
 	
 };
