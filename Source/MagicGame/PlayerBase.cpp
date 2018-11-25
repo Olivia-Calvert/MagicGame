@@ -2,103 +2,64 @@
 
 #include "PlayerBase.h"
 
-
 // Sets default values
-APlayerBase::APlayerBase()
-{
+APlayerBase::APlayerBase() {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	//CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision Box)"));
-
-	WizardMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Player Mesh"));
-	WizardMesh->SetSimulatePhysics(true);
-	RootComponent = WizardMesh;
-
-	Sprinting = false;
-	Jumping = false;
 }
 
 // Called when the game starts or when spawned
-void APlayerBase::BeginPlay()
-{
+void APlayerBase::BeginPlay() {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
-void APlayerBase::Tick(float DeltaTime)
-{
+void APlayerBase::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
-
-	FRotator newRotation;
-
-	if (!CurrentVelocity.IsZero())
-	{
-		if (Sprinting)
-		{
-			CurrentVelocity = CurrentVelocity * sprintMultiplier;
-		}
-		
-		FVector NewLocation = GetActorLocation() + (CurrentVelocity * DeltaTime);
-		SetActorLocation(NewLocation);
-
-		float angle = FMath::Acos(FVector::DotProduct(FVector(1, 0, 0), NewLocation));
-		newRotation = { 0.0f, angle, 0.0f };
-	}
-	else
-	{
-		newRotation = { 0.0f, 0.0f, 0.0f };
-	}
-	
-	SetActorRotation(newRotation);
 }
 
 // Called to bind functionality to input
-void APlayerBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
+void APlayerBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerBase::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerBase::MoveRight);
-	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &APlayerBase::SprintStart);
-	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &APlayerBase::SprintStop);
-	//PlayerInputComponent->BindAction("JumpStart", IE_Pressed, this, &APlayerBase::JumpStart);
-	//PlayerInputComponent->BindAction("JumpStop", IE_Released, this, &APlayerBase::JumpStop);
+	PlayerInputComponent->BindAxis("Move", this, &APlayerBase::Move);
+	PlayerInputComponent->BindAxis("Strafe", this, &APlayerBase::Strafe);
+	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &APlayerBase::BeginSprint);
+	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &APlayerBase::EndSprint);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &APlayerBase::Jump);
+
+	PlayerInputComponent->BindAxis("Yaw", this, &APlayerBase::Yaw);
+	PlayerInputComponent->BindAxis("Pitch", this, &APlayerBase::Pitch);
 }
 
-
-void APlayerBase::MoveForward(float value)
-{
-	CurrentVelocity.X = value * moveSpeed;
+void APlayerBase::Move(float value) {
+	FVector dir = GetActorForwardVector();
+	AddMovementInput(dir, value);
 }
 
-void APlayerBase::MoveRight(float value)
-{
-	CurrentVelocity.Y = value * moveSpeed;
+void APlayerBase::Strafe(float value) {
+	FVector dir = GetActorRightVector();
+	AddMovementInput(dir, value);
 }
 
-void APlayerBase::SprintStart()
-{
-	Sprinting = true;
+void APlayerBase::BeginSprint() {
+	GetCharacterMovement()->MaxWalkSpeed *= 1.5f;
 }
 
-void APlayerBase::SprintStop()
-{
-	Sprinting = false;
+void APlayerBase::EndSprint() {
+	GetCharacterMovement()->MaxWalkSpeed /= 1.5f;
 }
 
-void APlayerBase::JumpStart()
-{
-	if (!Jumping)
-	{
-		CurrentVelocity.Z += 100.0f;
-		Jumping = true;
-	}
+void APlayerBase::Yaw(float value) {
+	FRotator rotation = GetActorRotation();
+	rotation.Yaw += value;
+	SetActorRotation(rotation);
 }
 
-void APlayerBase::JumpStop()
-{
-	//CurrentVelocity.Z = 0.0f;
-	//Jumping = false;
+void APlayerBase::Pitch(float value) {
+	FRotator rotation = GetActorRotation();
+	rotation.Pitch += value;
+	SetActorRotation(rotation);
 }

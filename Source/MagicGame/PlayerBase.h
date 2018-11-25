@@ -4,7 +4,7 @@
 
 #include "Engine.h"
 #include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
+#include "GameFramework/Character.h"
 #include "Components/InputComponent.h"
 #include "PlayerBase.generated.h"
 
@@ -18,33 +18,14 @@ enum class Direction : uint8 {
 };
 
 UCLASS()
-class MAGICGAME_API APlayerBase : public APawn
-{
+class APlayerBase : public ACharacter {
 	GENERATED_BODY()
-
 public:
 	// Sets default values for this pawn's properties
 	APlayerBase();
 
-	UPROPERTY(EditAnywhere)
-		UStaticMeshComponent* WizardMesh;
 	//UPROPERTY(EditAnywhere)
 		//UBoxComponent* CollisionBox;
-
-	UPROPERTY(VisibleAnywhere)
-		FVector CurrentVelocity;
-	UPROPERTY(EditAnywhere)
-		FVector StartPosition;
-	UPROPERTY(EditAnywhere, Category = "Movement")
-		float moveSpeed = 85.0f;
-	UPROPERTY(EditAnywhere, Category = "Movement")
-		float sprintMultiplier = 3.0f;
-	UPROPERTY(VisibleAnywhere, Category = "Movement")
-		bool Sprinting;
-	UPROPERTY(VisibleAnywhere, Category = "Movement")
-		bool Jumping;
-	UPROPERTY(VisibleAnywhere, Category = "Movement")
-		Direction PlayerDirection;
 
 	UPROPERTY(EditAnywhere, Category = "Stats")
 		float MaxHealth;
@@ -71,13 +52,13 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;	
 
-	virtual void MoveForward(float value);
-	virtual void MoveRight(float value);
-	virtual void SprintStart();
-	virtual void SprintStop();
-	virtual void JumpStart();
-	virtual void JumpStop();
-	
+	void Move(float value);
+	void Strafe(float value);
+	void BeginSprint();
+	void EndSprint();
+
+	void Yaw(float value);
+	void Pitch(float value);
 };
