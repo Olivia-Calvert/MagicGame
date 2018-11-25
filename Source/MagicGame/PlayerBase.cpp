@@ -41,11 +41,14 @@ void APlayerBase::Tick(float DeltaTime)
 		}
 		
 		FVector NewLocation = GetActorLocation() + (CurrentVelocity * DeltaTime);
-		SetActorLocation(NewLocation);	
+		SetActorLocation(NewLocation);
+
+		float angle = FMath::Acos(FVector::DotProduct(FVector(1, 0, 0), NewLocation));
+		newRotation = { 0.0f, angle, 0.0f };
 	}
 	else
 	{
-		newRotation.Pitch = 0.0f;
+		newRotation = { 0.0f, 0.0f, 0.0f };
 	}
 	
 	SetActorRotation(newRotation);
