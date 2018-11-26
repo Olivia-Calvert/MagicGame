@@ -44,6 +44,9 @@
 *.VC.db
 *.VC.opendb
 
+# Large assets
+Content/ParagonGideon/*
+
 # Precompiled Assets
 SourceArt/**/*.png
 SourceArt/**/*.tga
