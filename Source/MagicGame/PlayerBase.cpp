@@ -13,6 +13,17 @@ APlayerBase::APlayerBase() {
 // Called when the game starts or when spawned
 void APlayerBase::BeginPlay() {
 	Super::BeginPlay();
+
+	gameManager = (AGameManager*)GetWorld()->GetAuthGameMode();
+
+	SpellLoadout[0] = gameManager->GetSpell(0);
+	SpellLoadout[1] = gameManager->GetSpell(1);
+	SpellLoadout[2] = gameManager->GetSpell(2);
+	SpellLoadout[3] = gameManager->GetSpell(3);
+	SpellLoadout[4] = gameManager->GetSpell(4);
+	SpellLoadout[5] = gameManager->GetSpell(5);
+
+	//SpellLoadout[0]
 }
 
 // Called every frame

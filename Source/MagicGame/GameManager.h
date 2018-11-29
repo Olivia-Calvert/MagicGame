@@ -26,4 +26,5 @@ private:
 	void LoadStatusEffects();
 public:
 	AGameManager();
+	FSpell GetSpell(int id);
 };

@@ -87,3 +87,8 @@ void AGameManager::LoadStatusEffects() {
 		statusList.push_back(effect);
 	}
 }
+
+FSpell AGameManager::GetSpell(int id)
+{
+	return spellList.at(id);
+}

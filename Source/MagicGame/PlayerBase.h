@@ -6,6 +6,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Components/InputComponent.h"
+#include "GameManager.h"
+#include "Spell.h"
 #include "PlayerBase.generated.h"
 
 UENUM(BlueprintType)
@@ -27,25 +29,31 @@ public:
 	//UPROPERTY(EditAnywhere)
 		//UBoxComponent* CollisionBox;
 
-	UPROPERTY(EditAnywhere, Category = "Stats")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 		float MaxHealth;
-	UPROPERTY(VisibleAnywhere, Category = "Stats")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Stats")
 		float CurrentHealth;
-	UPROPERTY(EditAnywhere, Category = "Stats")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 		float MaxStamina;
-	UPROPERTY(VisibleAnywhere, Category = "Stats")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Stats")
 		float CurrentStamina;
-	UPROPERTY(EditAnywhere, Category = "Stats")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 		float MaxMana;
-	UPROPERTY(VisibleAnywhere, Category = "Stats")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Stats")
 		float CurrentMana;
-	UPROPERTY(EditAnywhere, Category = "Stats")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 		float MagicDamage;
+
+	UPROPERTY(EditAnywhere, Category = "Stats")
+		FSpell SpellLoadout[5];
 
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+
+	AGameManager* gameManager;
 
 public:	
 	// Called every frame
