@@ -5,9 +5,7 @@
 ANPCBase::ANPCBase() {
 	PrimaryActorTick.bCanEverTick = true;
 
-	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	RootComponent = Mesh;
-
+	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 	SpawnCollisionHandlingMethod = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 }
 

@@ -6,18 +6,15 @@
 
 #include "Components/StaticMeshComponent.h"
 #include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
+#include "GameFramework/Character.h"
 #include "NPCProperties.h"
 #include "Spell.h"
 #include "NPCBase.generated.h"
 
 UCLASS()
-class ANPCBase : public APawn {
+class ANPCBase : public ACharacter {
 	GENERATED_BODY()
 protected:
-	UPROPERTY(VisibleAnywhere)
-		UStaticMeshComponent* Mesh;
-
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Base Properties")
 		ENPCType NPCType;
 
