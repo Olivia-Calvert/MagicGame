@@ -44,9 +44,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 		float MagicDamage;
 
-	UPROPERTY(EditAnywhere, Category = "Stats")
-		FSpell SpellLoadout[5];
-
+	/*
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+		FSpell  SpellLoadout[5];
+		*/
 
 protected:
 	// Called when the game starts or when spawned

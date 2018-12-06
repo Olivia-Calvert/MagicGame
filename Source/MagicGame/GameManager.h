@@ -26,5 +26,7 @@ private:
 	void LoadStatusEffects();
 public:
 	AGameManager();
+
+	UFUNCTION(BlueprintCallable, Category="Spells")
 	FSpell GetSpell(int id);
 };
