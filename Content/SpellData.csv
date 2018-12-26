@@ -1,3 +1,32 @@
 #Name,#TypeIndex,#Power/100,#Accuracy/100,#EffectIndex:Chance
 Magic Missile,4,65,65,
 Fireball,0,50,65,0:5
+Air Blast,3,50,65,
+Ice Shard,5,50,65,1:5
+Rock Blast,2,50,65,
+Bubble,1,50,65,
+Splash,1,1,100,
+Burning Hands,0,40,70,0:50
+Yeet,4,100,50,
+Kobe,4,50,100,
+Blizzard,5,75,80,1:50
+Whirlpool,1,75,80,
+Inferno,0,75,80,0:50
+Earthquake,2,75,80,
+Hurricane,3,75,80,
+Gust,3,65,70,
+Flamethower,0,65,70,0:40
+Stone Shards,2,65,70,
+Flurry,5,65,70,1:40
+Eldritch Blast,4,65,90,
+Hellfire,0,100,20,
+Zero Cold,5,100,20,
+Tsunami,1,100,20,
+Fissure,2,100,20,
+Tempest,3,100,20,
+Banishment,4,100,20,
+Burn,0,0,75,0:100
+Freeze,5,0,75,1:100
+Lullaby,4,0,75,5:100
+Toxic,4,0,75,4:100
+Dancing Lights,4,0,75,3:100
