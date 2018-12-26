@@ -30,6 +30,8 @@ void AGameManager::LoadSpells() {
 				element = "";
 			}
 		}
+		if (element != "")
+			elements.push_back(element);
 
 		FSpell spell;
 		spell.id = spellList.size();
@@ -77,6 +79,8 @@ void AGameManager::LoadStatusEffects() {
 				element = "";
 			}
 		}
+		if (element != "")
+			elements.push_back(element);
 
 		FStatusEffect effect;
 		effect.id = statusList.size();
