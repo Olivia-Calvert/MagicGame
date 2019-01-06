@@ -2,7 +2,7 @@
 
 This is a student-made project for an assignment.
 
-This is a game where you are a Wizard. You may fight other wizards in a turn-based pokemon-like battle where you cast spells at each other until one of you runs out of HP.
+This is a game where you are a Wizard. You may explore the world and fight other wizards in a turn-based pokemon-like battle where you cast spells at each other until one of you runs out of HP.
 
 The controls are as follows:
 
